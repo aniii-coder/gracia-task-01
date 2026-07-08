@@ -1,0 +1,160 @@
+.sidebar {
+  width: 288px;
+  height: 1080px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  overflow: hidden;
+
+  
+  background:
+    /* Bottom-left glow */
+    radial-gradient(
+      circle at left bottom,
+      rgba(105, 65, 198, 0.45) 0%,
+      rgba(105, 65, 198, 0.25) 20%,
+      rgba(105, 65, 198, 0.12) 40%,
+      transparent 65%
+    ),
+
+    /* Main gradient */
+    linear-gradient(
+      45.34deg,
+      #6941C6 28.11%,
+      #42307D 54.01%,
+      #2C1C5F 95.48%
+    );
+
+
+  color: #fff;
+
+  display: flex;
+  flex-direction: column;
+
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.sidebar::before {
+  content: "";
+
+  position: absolute;
+
+  width: 520px;
+  height: 520px;
+
+  left: -240px;
+  bottom: -240px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(105, 65, 198, 0.45) 0%,
+    rgba(105, 65, 198, 0.22) 35%,
+    transparent 75%
+  );
+
+  filter: blur(70px);
+
+  pointer-events: none;
+}
+
+.logo {
+  /* padding: 25px; */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+    height: 56px;
+    border-bottom: 1px solid #FFFFFF1A;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.headerSection{
+    height: 32px;
+    width: 285px;
+    padding-left: 16px;
+    margin-top: 16px;
+    padding-right: 130px;
+}
+
+
+.headerContainer{
+    height: 30px;
+    width: 139px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    /* justify-content: center; */
+}
+.titleArea {
+        /* border: 1px solid red; */
+    height: 32px;
+    width: 78px;
+    display: flex;
+    /* align-items: center; */
+    margin-top: 9px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 21px;
+  letter-spacing: 0;
+}
+.logoArea{
+    display: flex;
+    align-items: center;
+
+}
+
+.searchBox {
+  margin: 0 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background: #43317b;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.searchBox input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: white;
+  outline: none;
+}
+
+.menu {
+  margin-top: 20px;
+  flex: 1;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 14px 22px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.menuItem:hover {
+  background: rgba(255,255,255,.08);
+}
+
+.active {
+  background: #5b43b4;
+}
+
+.arrow {
+  margin-left: auto;
+}
+
+.version {
+  padding: 20px;
+  text-align: center;
+  background: #39286f;
+}
