@@ -1,6 +1,6 @@
 .searchBar {
     width: 256px;
-    height: 42px;
+    height: 36px;
 
     display: flex;
     align-items: center;
@@ -39,6 +39,18 @@
     color:#FFFFFF;
 }
 
-.searchBar input::placeholder{
+/* .searchBar input::placeholder{
     color:rgba(255,255,255,.78);
+} */
+
+
+.searchBar input::placeholder {
+  font-family: Inter, sans-serif; /* Font family/body */
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px; /* text-sm */
+  line-height: 20px; /* text-sm */
+  letter-spacing: 0;
+  color:rgba(255,255,255,.78);
+  opacity: 1; /* Ensures full color in some browsers */
 }
