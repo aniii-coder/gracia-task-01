@@ -3,6 +3,7 @@ import CustomDropDown from '../../componets/custom/custom-dropdown/CustomDropDow
 
 import styles from './Home.module.css'
 import BreadCrumbBar from '../../componets/breadcrumb-bar/BreadCrumbBar';
+import HeroComponent from './component/HeroComponent';
 
 
 
@@ -13,7 +14,7 @@ const Home = () => {
 
   return (
     <div>
-      <BreadCrumbBar />
+      <HeroComponent />
     </div>
   )
 }

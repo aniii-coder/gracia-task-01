@@ -1,0 +1,36 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  cursor: pointer;
+
+  outline: none;
+
+  transition: .25s;
+
+  box-sizing: border-box;
+}
+
+.button:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.loader{
+  width:18px;
+  height:18px;
+
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,.35);
+  border-top-color:white;
+
+  animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}

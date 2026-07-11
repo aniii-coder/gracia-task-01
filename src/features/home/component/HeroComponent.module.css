@@ -1,0 +1,145 @@
+.heroContainerMain{
+    background-color: #f7f5ff;
+    height: 820px;
+
+}
+
+
+
+.heroContainer{
+    /* border: 1px solid red; */
+    /* height: 74px; */
+}
+
+
+
+.heroInnerContainer{
+    padding: 24px 32px;
+    /* border: 1px solid black; */
+    height: 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+
+.heroLeftContainer{
+    /* border: 1px solid blue; */
+    height: 52px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+}
+
+.heroRightContainer{
+    /* border: 1px solid green; */
+      height: 36px;
+    min-width: 451px;
+    display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+    align-items: center;
+    /* justify-content: space-around; */
+}
+
+
+
+.leftUpperSection{
+    /* border: 1px solid pink; */
+    height: 30px;
+    
+}
+
+.leftBottomSection{
+    /* border: 1px solid orange; */
+height: 22px;
+display: flex;
+align-items: center;
+/* justify-content: center; */
+}
+
+
+.route {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #787878;
+  cursor: pointer;
+}
+
+.activeRoute {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6941c6;
+  cursor: pointer;
+}
+
+.separator {
+  color: #9c9b9b;
+  flex-shrink: 0;
+}
+
+.primaryButton{
+
+    height:40px;
+
+    padding:0 16px;
+
+    border:none;
+
+    border-radius:12px;
+
+    color:white;
+
+    background:linear-gradient(
+      180deg,
+      #8D5CF6,
+      #7448DB
+    );
+}
+
+.secondaryButton{
+
+    height:36px;
+
+    padding:0 14px;
+
+    border-radius:12px;
+
+    border:1px solid #D4D4D4;
+
+    background:white;
+}
+
+.activity{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:#404040;
+
+    font:500 14px/20px "Inter",sans-serif;
+}
+
+
+
+
+
+.leftUpperSection{
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+     font-family: "Poppins", sans-serif;
+  font-weight: 550;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0.4px;
+  color: #242323;
+}
