@@ -1,0 +1,138 @@
+.selected {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  color: #4e4e4e;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+
+  flex: 1;
+}
+
+.selected svg {
+  color: #8d8d8d;
+  flex-shrink: 0;
+}
+.option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #8d8d8d;
+}
+
+.title {
+  color: #333;
+
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.description {
+  margin-top: 2px;
+
+  color: #8c8c8c;
+
+  font-size: 12px;
+}
+
+
+
+.breadCrumbContainer{
+    height: 68px;
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid #cecece;
+    justify-content: space-between;
+}
+
+
+
+.breadCrumbLeft{
+    display: flex;
+    gap: 8px;
+        margin: 16px 20px;
+
+}
+
+
+.breadCrumbRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 20px;
+}
+
+.actionButton {
+  width: 44px;
+  height: 44px;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  color: #8a8a8a;
+  transition: color .2s;
+}
+
+.actionButton:hover {
+  color: #4e4e4e;
+}
+
+.badge {
+  position: absolute;
+
+  top: -5px;
+  right: -3px;
+
+  min-width: 18px;
+  height: 18px;
+
+  padding: 0 1px;
+
+  border-radius: 999px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ef4444;
+  color: #fff;
+
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.profileButton {
+  width: 44px;
+  height: 44px;
+
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.profileButton img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
