@@ -1,0 +1,104 @@
+.paginationContainer {
+  height: 56px;
+  padding: 0 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-top: 1px solid #eaecf0;
+  background: #ffffff;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.pageInfo,
+.rowsSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 13px;
+  color: #344054;
+}
+
+.currentPage {
+  min-width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  background: #fff;
+
+  font-weight: 600;
+}
+
+.rowsSection select {
+  width: 56px;
+  height: 32px;
+
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  padding: 0 8px;
+
+  font-size: 13px;
+  background: white;
+  cursor: pointer;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rightSection button {
+  width: 32px;
+  height: 32px;
+
+  border: 1px solid transparent;
+  border-radius: 8px;
+
+  background: transparent;
+  color: #667085;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  transition: .2s;
+}
+
+.rightSection button:hover:not(:disabled) {
+  background: #f9fafb;
+  border-color: #eaecf0;
+}
+
+.rightSection button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+.active {
+  background: #f9fafb !important;
+  border: 1px solid #eaecf0 !important;
+  color: #344054 !important;
+  font-weight: 600;
+}
+
+.dots {
+  width: 24px;
+  text-align: center;
+  color: #98a2b3;
+  font-size: 13px;
+}

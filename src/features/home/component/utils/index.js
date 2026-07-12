@@ -62,3 +62,19 @@ export const heroButtonConfig = {
     ),
   },
 };
+
+
+
+
+export const mockViews = [
+  { id: 1, name: "My Loan View", isDefault: true },
+  { id: 2, name: "Priority Loans", isDefault: false },
+  { id: 3, name: "Submitted Loans", isDefault: false },
+  { id: 4, name: "Draft Applications", isDefault: false },
+];
+export const exportData = [
+  { id: 1, name: "Export All" },
+  // { id: 2, name: "Priority Loans", isDefault: false },
+  // { id: 3, name: "Submitted Loans", isDefault: false },
+  // { id: 4, name: "Draft Applications", isDefault: false },
+];

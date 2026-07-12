@@ -1,0 +1,122 @@
+.itemContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Individual Row Formatting */
+.rowItem {
+  display: flex;
+  align-items: center;
+  /* padding: 12px 24px; */
+  cursor: pointer;
+  background-color: #ffffff;
+  transition: background-color 0.15s ease;
+}
+
+.rowItem:hover {
+  background-color: #f8f9fa;
+}
+
+/* Circular Radio Style Matching Mockup */
+.radioCustom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #a0aec0;
+  border-radius: 50%;
+  margin-right: 14px;
+  position: relative;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  transition: border-color 0.15s ease;
+}
+
+/* Selected Radio Ring (Deep Accent Tint) */
+.radioActive {
+  border-color: #7c4dff;
+}
+
+/* Filled Center Dot on Selection */
+.radioActive::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #7c4dff;
+}
+
+/* Typography Labels */
+.label {
+  font-size: 16px;
+  color: #333333;
+  font-weight: 500;
+  flex-grow: 1;
+}
+
+/* Default View Rounded Pill Badge */
+.badge {
+  font-size: 13px;
+  color: #333333;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-weight: 400;
+  margin-left: 12px;
+}
+
+/* Footer Section Panel */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-top: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  margin-top: 8px;
+}
+
+/* Purple Apply Button */
+.applyBtn {
+  background-color: #7c4dff;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.applyBtn:hover {
+  background-color: #673ab7;
+}
+
+/* Cancel Text Link Button */
+.cancelBtn {
+  background: none;
+  border: none;
+  color: #4b5563;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px 16px;
+  transition: color 0.2s ease;
+}
+
+.cancelBtn:hover {
+  color: #111827;
+}
+
+/* Closed Trigger Header Adjustment */
+.triggerText {
+  font-size: 16px;
+  font-weight: 500;
+  color: #4b5563;
+}

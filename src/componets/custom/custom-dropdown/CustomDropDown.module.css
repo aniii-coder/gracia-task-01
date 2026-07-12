@@ -1,71 +1,65 @@
 .dropdown {
   position: relative;
-  width: 232px;
   height: 36px;
   font-family: sans-serif;
 }
 
 .trigger {
-  width: 232px;
+  width: 100%; /* Matches whatever wrapper dynamic width you supply */
   height: 36px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  /* padding: 10px 24px 10px 20px; */
+  padding: 0 14px;
   background: #ffffff;
-  
-  border: none;
-  border-bottom: 1px solid #e5e5e5;
   border: 1px solid #cecece;
   border-radius: 8px;
   cursor: pointer;
-
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .trigger:hover {
   background: #fafafa;
-}
-.trigger:hover {
   border-color: #bab7b7;
 }
 
+/* Base structural Menu definition */
 .menu {
   position: absolute;
-
-  top: calc(100% + 1px);
-  left: 0;
-
-  width: 100%;
-
   background: #ffffff;
-
   border: 1px solid #e5e5e5;
   border-radius: 8px;
-
   overflow: hidden;
-
-  box-shadow:
-    0 4px 12px rgba(0,0,0,.08);
-
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
   z-index: 999;
 }
+
+/* --- Dynamic Directional Placements --- */
+.openDown {
+  top: calc(100% + 4px);
+}
+
+.openTop {
+  bottom: calc(100% + 4px);
+}
+
+.alignLeft {
+  left: 0;
+}
+
+.alignRight {
+  right: 0;
+}
+
+/* --- Menu Items --- */
 .item {
-  padding: 14px 20px;
-
+  padding: 12px 16px;
   cursor: pointer;
-
   transition: background .15s ease;
 }
 
 .item:hover {
   background: #f8f8f8;
-}
-
-.item:hover {
-  background: rgba(255, 255, 255, 0.06);
 }
 
 .arrow {

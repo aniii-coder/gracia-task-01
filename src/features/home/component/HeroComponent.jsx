@@ -1,11 +1,79 @@
-import React from "react";
+import React, { useState } from "react";
 import BreadCrumbBar from "../../../componets/breadcrumb-bar/BreadCrumbBar";
 import styles from "./HeroComponent.module.css";
 import CustomButton from "../../../componets/custom/custom-button/CustomButton";
-import { buttonConfig, heroButtonConfig } from "./utils";
-import { ChevronDown, ChevronRight, Search } from "lucide-react";
+import { buttonConfig, exportData, heroButtonConfig, mockViews } from "./utils";
+import {
+  ChevronDown,
+  ChevronRight,
+  ColumnsIcon,
+  Filter,
+  Search,
+} from "lucide-react";
+import CustomDataTable, {
+  disbursementData,
+} from "../../../componets/custom/custom-data-table/CustomDataTable";
+import TablePagination from "../../../componets/custom/custom-data-table/component/table-pagination/TablePagination";
+import { columnsConfig } from "../../../componets/custom/custom-data-table/utils/column";
+import ColumnVisiblityDropdown from "./specific-component/column-visiblity-dropdown/ColumnVisiblityDropdown";
+import CustomDropDown from "../../../componets/custom/custom-dropdown/CustomDropDown";
+import {
+  dropdownConfig,
+  moduleList,
+} from "../../../componets/breadcrumb-bar/utils/Utils";
+import ViewDropDown from "./specific-component/view-dropdown/ViewDropDown";
+import CreateViewModal from "../../../componets/custom/custom-data-table/component/popup/create-view-popup/CreateViewModal";
 
 const HeroComponent = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+const [columns, setColumns] = useState(columnsConfig);
+
+const [views, setViews] = useState([
+  {
+    id: 1,
+    name: "Default View",
+    isDefault: true,
+    columns: columnsConfig,
+  },
+]);
+
+const [selectedView, setSelectedView] = useState(views[0]);
+
+const [showDropdown, setShowDropdown] = useState(false);
+
+const [pendingColumns, setPendingColumns] = useState(null);
+
+const [showCreateViewModal, setShowCreateViewModal] = useState(false);
+const handleSaveColumns = (updatedColumns) => {
+    setPendingColumns(updatedColumns);
+
+    setShowDropdown(false);
+
+    setShowCreateViewModal(true);
+};
+
+
+const handleCreateView = (viewName) => {
+  const newView = {
+    id: Date.now(),
+    name: viewName,
+    isDefault: false,
+    columns: pendingColumns,
+  };
+
+  setViews((prev) => [...prev, newView]);
+
+  // Don't apply it automatically
+  setShowCreateViewModal(false);
+
+  setPendingColumns(null);
+};
+
+  const handleCancel = () => {
+    setShowDropdown(false);
+  };
+
   const title = "Disbursment";
   const arrayOfRoutes = [
     {
@@ -18,11 +86,6 @@ const HeroComponent = () => {
       name: "Disbursement",
       isLast: true,
     },
-    // {
-    //     id: 3,
-    //     name: "List",
-    //     isLast: true
-    // }
   ];
 
   const cardInfo = [
@@ -57,6 +120,15 @@ const HeroComponent = () => {
       childData: 12,
     },
   ];
+
+  const totalPages = Math.ceil(disbursementData.length / rowsPerPage);
+
+  const startIndex = (currentPage - 1) * rowsPerPage;
+
+  const paginatedData = disbursementData.slice(
+    startIndex,
+    startIndex + rowsPerPage,
+  );
   return (
     <>
       <BreadCrumbBar />
@@ -109,32 +181,93 @@ const HeroComponent = () => {
             );
           })}
         </div>
-      <div className={styles.tableSection}>
-<div className={styles.tableUpperSection}>
-    <div className={styles.tableSearchbar}>
-    <Search size={16} strokeWidth={2} className={styles.searchIcon} />
-    <input
-      type="text"
-      placeholder="Search for Disbursement"
-      className={styles.searchInput}
-    />
-    <span className={styles.shortcut}>⌘K</span>
-  </div>
+        <div className={styles.tableSection}>
+          <div className={styles.tableUpperSection}>
+            <div className={styles.tableSearchbar}>
+              <Search size={16} strokeWidth={2} className={styles.searchIcon} />
+              <input
+                type="text"
+                placeholder="Search for Disbursement"
+                className={styles.searchInput}
+              />
+              <span className={styles.shortcut}>⌘K</span>
+            </div>
 
-  <div className={styles.tableActions}>
-    <button className={styles.actionButton}>
-      Saved View
-      <ChevronDown size={16} />
-    </button>
+            <div className={styles.tableActions}>
+              {/* <button className={styles.actionButton}>
+                Saved View
+                <ChevronDown size={16} />
+              </button> */}
+              {/* <CustomDropDown 
+                v
+              /> */}
+             <ViewDropDown
+    viewList={views}
 
-    <button className={styles.actionButton}>
-      Export All
-      <ChevronDown size={16} />
-    </button>
-  </div>
-</div>
-</div>
+    selected={selectedView}
+
+    onApply={(view)=>{
+
+        setSelectedView(view);
+
+        setColumns(view.columns);
+
+    }}
+/>
+
+              <button className={styles.actionButton}>
+                Export All
+                <ChevronDown size={16} />
+              </button>
+            </div>
+          </div>
+          {/* {console.log("columnConfig >> ", columnsConfig, disbursementData)} */}
+          <CustomDataTable
+            columns={columns}
+            data={paginatedData}
+            centerHeader={<span>Disbursement</span>}
+            rightHeader={
+              <div className={styles.columnWrapper}>
+                <button
+                  className={styles.columnButton}
+                  onClick={() => setShowDropdown((prev) => !prev)}
+                >
+                  <ColumnsIcon size={16} />
+                </button>
+
+                {showDropdown && (
+                  <div className={styles.dropdownWrapper}>
+                    <ColumnVisiblityDropdown
+                      columns={columns}
+                      onSave={handleSaveColumns}
+                      onCancel={handleCancel}
+                    />
+                  </div>
+                )}
+              </div>
+            }
+          />
+          <TablePagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            rowsPerPage={rowsPerPage}
+            onPageChange={(page) => setCurrentPage(page)}
+            onRowsPerPageChange={(value) => {
+              setRowsPerPage(value);
+              setCurrentPage(1);
+            }}
+          />
+        </div>
       </div>
+      <CreateViewModal
+
+    isOpen={showCreateViewModal}
+
+    onClose={() => setShowCreateViewModal(false)}
+
+    onCreate={handleCreateView}
+
+/>
     </>
   );
 };
