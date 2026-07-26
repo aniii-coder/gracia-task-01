@@ -1,0 +1,154 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  padding: 16px;
+}
+
+.modalCard {
+  width: 100%;
+  max-width: 400px;
+  background-color: #ffffff;
+  border-radius: 24px; /* Ditto 3XL corner curvature */
+  padding: 24px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: 1px solid #f3f4f6;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+}
+
+.title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  letter-spacing: -0.02em;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.closeBtn:hover {
+  color: #4b5563;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  display: flex;
+}
+
+.asterisk {
+  color: #8456ec;
+  font-weight: 1000;
+  font-size: 20px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  color: #111827;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus {
+  border-color: #8456ec;
+  box-shadow: 0 0 0 1px #8456ec;
+}
+
+.divider {
+  border-top: 1px solid #d6d7db;
+  margin: 0 -24px; /* Extends completely edge-to-edge across the card */
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.cancelBtn, .createBtn {
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  min-width: 120px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.cancelBtn {
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #374151;
+}
+
+.cancelBtn:hover {
+  background-color: #f9fafb;
+}
+
+.cancelBtn:active {
+  background-color: #f3f4f6;
+}
+
+.createBtn {
+  background-color: #7c4dff; /* Exact popup purple */
+  border: none;
+  color: #ffffff;
+  min-width: 150px;
+  box-shadow: 0 4px 6px -1px rgba(124, 77, 255, 0.2);
+}
+
+.createBtn:hover {
+  background-color: #6c3ee6;
+}
+
+.createBtn:active {
+  background-color: #5c30d6;
+}

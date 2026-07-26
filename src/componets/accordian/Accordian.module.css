@@ -1,0 +1,79 @@
+.accordionContainer {
+  width: 100%;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background-color: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.accordionHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  background-color: #f8fafc; /* Subtle grey background */
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid rgb(232, 232, 232);
+}
+
+.accordionHeader:hover {
+  background-color: #f1f5f9;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  color: #334155;
+}
+
+.titleText {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1e293b;
+}
+
+.arrowIcon {
+  display: flex;
+  align-items: center;
+  color: #0f172a;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Rotates chevron upwards when open */
+.arrowIcon.rotate {
+  transform: rotate(180deg);
+}
+
+/* Expandable Content Container */
+.contentWrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease-out;
+}
+
+.contentWrapper.showContent {
+  grid-template-rows: 1fr;
+}
+
+.accordionContent {
+  overflow: hidden;
+  padding: 0 24px;
+  transition: padding 0.3s ease-out;
+}
+
+/* Applies internal padding only when open to prevent layout snapping */
+.contentWrapper.showContent .accordionContent {
+  padding: 10px 10px;
+}
