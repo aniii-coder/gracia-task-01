@@ -1,26 +1,20 @@
 import { ArrowUpDown, Menu } from "lucide-react";
 import heroStyles from '../../../../features/home/component/HeroComponent.module.css'
+import SelectAllCheckbox from "../component/select-all-checkbox/SelectAllCheckbox";
+import RowCheckBox from "../component/row-checkbox/RowCheckbox";
+import { generatePath, Link } from "react-router-dom";
 
-export const columnsConfig = [
+
+export const getColumnsConfig = (pathname) => [
   {
     key: "select",
     title: "Select",
     visible: true,
     width: 60,
 
-    header: ({ styles }) => (
-      <input
-        type="checkbox"
-        className={heroStyles.checkbox}
-      />
-    ),
+    header: () => <SelectAllCheckbox />,
 
-    render: ({ styles }) => (
-      <input
-        type="checkbox"
-        className={heroStyles.checkbox}
-      />
-    ),
+    render: ({ row }) => <RowCheckBox row={row} />,
   },
 
   {
@@ -29,7 +23,7 @@ export const columnsConfig = [
     visible: true,
     width: 150,
 
-    header: ({ styles }) => (
+    header: () => (
       <div className={heroStyles.headerCell}>
         <span>Disbursement Date</span>
         <ArrowUpDown size={14} />
@@ -45,17 +39,17 @@ export const columnsConfig = [
     visible: true,
     width: 170,
 
-    header: ({ styles }) => (
+    header: () => (
       <div className={heroStyles.headerCell}>
         <span>Loan ID</span>
         <ArrowUpDown size={14} />
       </div>
     ),
 
-    render: ({ value }) => (
-      <a href="/" className={heroStyles.link}>
-        {value}
-      </a>
+    render: ({ value, row }) => (
+      <Link to={`${pathname}/${row.loanId}`}>
+  {row.loanId}
+</Link>
     ),
   },
 
@@ -65,7 +59,7 @@ export const columnsConfig = [
     visible: true,
     width: 130,
 
-    header: ({ styles }) => (
+    header: () => (
       <div className={heroStyles.headerCell}>
         <span>Status</span>
         <ArrowUpDown size={14} />
@@ -89,7 +83,7 @@ export const columnsConfig = [
     title: "Applicant Name",
     visible: true,
 
-    header: ({ styles }) => (
+    header: () => (
       <div className={heroStyles.headerCell}>
         <span>Applicant Name</span>
         <ArrowUpDown size={14} />
@@ -104,7 +98,7 @@ export const columnsConfig = [
     title: "Bank Name",
     visible: true,
 
-    header: ({ styles }) => (
+    header: () => (
       <div className={heroStyles.headerCell}>
         <span>Bank Name</span>
         <ArrowUpDown size={14} />
@@ -120,7 +114,7 @@ export const columnsConfig = [
     visible: true,
     align: "right",
 
-    header: ({ styles }) => (
+    header: () => (
       <div className={heroStyles.headerCell}>
         <span>Sanctioned Amt</span>
 
@@ -140,7 +134,7 @@ export const columnsConfig = [
     title: "Verified Amount",
     visible: true,
 
-    header: ({ styles }) => (
+    header: () => (
       <div className={heroStyles.headerCell}>
         <span>Verified Amt</span>
         <ArrowUpDown size={14} />
@@ -155,7 +149,7 @@ export const columnsConfig = [
     title: "Referral %",
     visible: true,
 
-    header: ({ styles }) => (
+    header: () => (
       <div className={heroStyles.headerCell}>
         <span>Referral %</span>
         <ArrowUpDown size={14} />
@@ -170,7 +164,7 @@ export const columnsConfig = [
     title: "Bank Executive",
     visible: true,
 
-    header: ({ styles }) => (
+    header: () => (
       <div className={heroStyles.headerCell}>
         <span>Bank Executive</span>
         <ArrowUpDown size={14} />

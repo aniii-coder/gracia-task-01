@@ -16,7 +16,7 @@
 
 .table {
   width: 100%;
-  min-width: 1500px; /* or whatever your columns require */
+  min-width: max-content; /* or whatever your columns require */
   border-collapse: collapse;
 }
 

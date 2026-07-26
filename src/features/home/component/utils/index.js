@@ -3,6 +3,9 @@ import {
   CloudDownload,
   RefreshCw,
   ChevronDown,
+  Archive,
+  ListRestart,
+  Edit2,
 } from "lucide-react";
 
 
@@ -34,7 +37,7 @@ export const heroButtonConfig = {
 
     render: () => (
       <div className={styles.activity}>
-        <RefreshCw size={18} />
+        <RefreshCw size={18} color="#A2A2A2"/>
         <span>Activity</span>
       </div>
     ),
@@ -45,7 +48,7 @@ export const heroButtonConfig = {
 
     render: () => (
       <div className={styles.activity}>
-        <CloudDownload size={18} />
+        <CloudDownload size={18} color="#A2A2A2"/>
         <span>Import Excel</span>
       </div>
     ),
@@ -58,6 +61,40 @@ export const heroButtonConfig = {
       <>
         <span>Add Disbursement</span>
         <ChevronDown size={18} />
+      </>
+    ),
+  },
+};
+export const loanDetails = {
+  archive: {
+    design: buttonDesigns.secondary,
+
+    render: () => (
+      <div className={styles.activity}>
+        <Archive size={18} />
+        <span>Archive</span>
+      </div>
+    ),
+  },
+
+  activityLogs: {
+    design: buttonDesigns.secondary,
+
+    render: () => (
+      <div className={styles.activity}>
+        <ListRestart size={18} />
+        <span>Activity Logs</span>
+      </div>
+    ),
+  },
+
+  editLoan: {
+    design: buttonDesigns.primary,
+
+    render: () => (
+      <>
+        <Edit2 size={18} />
+        <span>Edit Loans</span>
       </>
     ),
   },

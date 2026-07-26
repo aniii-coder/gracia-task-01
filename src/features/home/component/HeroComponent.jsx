@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import BreadCrumbBar from "../../../componets/breadcrumb-bar/BreadCrumbBar";
 import styles from "./HeroComponent.module.css";
 import CustomButton from "../../../componets/custom/custom-button/CustomButton";
@@ -11,10 +11,10 @@ import {
   Search,
 } from "lucide-react";
 import CustomDataTable, {
-  disbursementData,
+  // disbursementData,
 } from "../../../componets/custom/custom-data-table/CustomDataTable";
 import TablePagination from "../../../componets/custom/custom-data-table/component/table-pagination/TablePagination";
-import { columnsConfig } from "../../../componets/custom/custom-data-table/utils/column";
+import { getColumnsConfig } from "../../../componets/custom/custom-data-table/utils/column";
 import ColumnVisiblityDropdown from "./specific-component/column-visiblity-dropdown/ColumnVisiblityDropdown";
 import CustomDropDown from "../../../componets/custom/custom-dropdown/CustomDropDown";
 import {
@@ -23,58 +23,121 @@ import {
 } from "../../../componets/breadcrumb-bar/utils/Utils";
 import ViewDropDown from "./specific-component/view-dropdown/ViewDropDown";
 import CreateViewModal from "../../../componets/custom/custom-data-table/component/popup/create-view-popup/CreateViewModal";
+import Accordion from "../../../componets/accordian/Accordian";
+import { useLocation, useParams } from "react-router-dom";
+import useRouteInfo from "../../../helpers";
 
 const HeroComponent = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-const [columns, setColumns] = useState(columnsConfig);
 
-const [views, setViews] = useState([
-  {
-    id: 1,
-    name: "Default View",
-    isDefault: true,
-    columns: columnsConfig,
-  },
-]);
 
-const [selectedView, setSelectedView] = useState(views[0]);
 
-const [showDropdown, setShowDropdown] = useState(false);
 
-const [pendingColumns, setPendingColumns] = useState(null);
 
-const [showCreateViewModal, setShowCreateViewModal] = useState(false);
-const handleSaveColumns = (updatedColumns) => {
+
+
+const {
+  pathname,
+  slugs,
+  query,
+  route,
+  basePath,
+  dynamicSlug,
+} = useRouteInfo();
+
+
+
+const { module, page } = useParams();
+
+
+  console.log('module, page :>> ', module, page);
+
+
+  const columnsConfig = useMemo(() => getColumnsConfig(pathname), [pathname]);
+  const [columns, setColumns] = useState(columnsConfig);
+  useEffect(() => {
+    setColumns(columnsConfig);
+  }, [columnsConfig]);
+  const [views, setViews] = useState([
+    {
+      id: 1,
+      name: "Default View",
+      isDefault: true,
+      columns: columnsConfig,
+    },
+  ]);
+
+  const [selectedView, setSelectedView] = useState(views[0]);
+  const [disbursmentDataList, setDisbursementDataList] = useState([])
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const [pendingColumns, setPendingColumns] = useState(null);
+
+  const [showCreateViewModal, setShowCreateViewModal] = useState(false);
+
+  const handleSaveColumns = (updatedColumns) => {
     setPendingColumns(updatedColumns);
 
     setShowDropdown(false);
 
     setShowCreateViewModal(true);
-};
-
-
-const handleCreateView = (viewName) => {
-  const newView = {
-    id: Date.now(),
-    name: viewName,
-    isDefault: false,
-    columns: pendingColumns,
   };
 
-  setViews((prev) => [...prev, newView]);
 
-  // Don't apply it automatically
-  setShowCreateViewModal(false);
 
-  setPendingColumns(null);
-};
+     const getDisbursements = async () => {
+    try {
+      const response = await fetch("https://mock-api-ubn9.onrender.com/disbursements");
+      console.log('response :>> ', response);
+  
+      if (!response.ok) {
+        throw new Error(
+          `Request failed with status ${response.status}: ${response.statusText}`
+        );
+      }
+      const data = await response.json();  
+      setDisbursementDataList(data)
+      return {
+        success: true,
+        data,
+      };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.message || "Something went wrong",
+        data: [],
+      };
+    }
+  };
+  
+
+
+
+  
+
+  const handleCreateView = (viewName) => {
+    const newView = {
+      id: Date.now(),
+      name: viewName,
+      isDefault: false,
+      columns: pendingColumns,
+    };
+
+    setViews((prev) => [...prev, newView]);
+
+    // Don't apply it automatically
+    setShowCreateViewModal(false);
+
+    setPendingColumns(null);
+  };
 
   const handleCancel = () => {
     setShowDropdown(false);
   };
 
   const title = "Disbursment";
+  const routes = useParams();
   const arrayOfRoutes = [
     {
       id: 1,
@@ -121,14 +184,25 @@ const handleCreateView = (viewName) => {
     },
   ];
 
-  const totalPages = Math.ceil(disbursementData.length / rowsPerPage);
+  const totalPages = Math.ceil(disbursmentDataList?.length / rowsPerPage);
 
   const startIndex = (currentPage - 1) * rowsPerPage;
 
-  const paginatedData = disbursementData.slice(
+  const paginatedData = disbursmentDataList.slice(
     startIndex,
     startIndex + rowsPerPage,
   );
+
+
+
+
+useEffect(() => {
+  getDisbursements()
+},[])
+
+
+
+
   return (
     <>
       <BreadCrumbBar />
@@ -201,21 +275,17 @@ const handleCreateView = (viewName) => {
               {/* <CustomDropDown 
                 v
               /> */}
-             <ViewDropDown
-    viewList={views}
+              <ViewDropDown
+                viewList={views}
+                selected={selectedView}
+                onApply={(view) => {
+                  setSelectedView(view);
 
-    selected={selectedView}
+                  setColumns(view.columns);
+                }}
+              />
 
-    onApply={(view)=>{
-
-        setSelectedView(view);
-
-        setColumns(view.columns);
-
-    }}
-/>
-
-              <button className={styles.actionButton}>
+              <button className={styles.actionButton} onClick={() => getDisbursements()}>
                 Export All
                 <ChevronDown size={16} />
               </button>
@@ -225,7 +295,7 @@ const handleCreateView = (viewName) => {
           <CustomDataTable
             columns={columns}
             data={paginatedData}
-            centerHeader={<span>Disbursement</span>}
+            // centerHeader={<span>Disbursement</span>}
             rightHeader={
               <div className={styles.columnWrapper}>
                 <button
@@ -260,14 +330,10 @@ const handleCreateView = (viewName) => {
         </div>
       </div>
       <CreateViewModal
-
-    isOpen={showCreateViewModal}
-
-    onClose={() => setShowCreateViewModal(false)}
-
-    onCreate={handleCreateView}
-
-/>
+        isOpen={showCreateViewModal}
+        onClose={() => setShowCreateViewModal(false)}
+        onCreate={handleCreateView}
+      />
     </>
   );
 };

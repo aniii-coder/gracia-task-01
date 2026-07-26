@@ -16,7 +16,7 @@ body{
 
 
 .heroInnerContainer{
-    padding: 24px 32px;
+    padding: 24px 24px;
     /* border: 1px solid black; */
     height: 52px;
     display: flex;
@@ -122,10 +122,10 @@ gap: 8px;
     display:flex;
 
     align-items:center;
-
+  letter-spacing: 0.5px;
     gap:10px;
 
-    color:#404040;
+    color:#2f2f2f;
 
     font:500 14px/20px "Inter",sans-serif;
 }
@@ -167,7 +167,7 @@ gap: 8px;
   justify-content: center;
   gap: 8px;
 
-  padding: 24px;
+  padding: 20px;
   box-sizing: border-box;
 
   background: #fff;
@@ -178,11 +178,23 @@ gap: 8px;
 .title {
   margin: 0;
 
-  font-family: Inter, sans-serif;
+  /* font-family: Inter, sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
-  color: #525252;
+  color: #525252; */
+
+
+
+
+    font-family: 'Inter Variable', system-ui, sans-serif; /* Requires a variable font */
+  font-weight: 550;
+  font-variation-settings: 'wght' 550; /* Forces exact weight for variable fonts */
+  font-style: normal;
+  font-size: 1rem; /* 14px */
+  line-height: 1.5rem; /* 20px */
+  letter-spacing: 0.2px;
+  color: rgb(108, 107, 107);
 }
 
 .amount {
@@ -302,10 +314,14 @@ border-radius: 10px;
 
   cursor: pointer;
 
-  font-family: Inter, sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  color: #52525b;
+  font-family: 'Inter Variable', system-ui, sans-serif; /* Requires a variable font */
+  font-weight: 550;
+  font-variation-settings: 'wght' 550; /* Forces exact weight for variable fonts */
+  font-style: normal;
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.5rem; /* 20px */
+  letter-spacing: 0.2px;
+  color: rgb(108, 107, 107);
 
   transition: background 0.2s ease;
 }
@@ -330,6 +346,7 @@ border-radius: 10px;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  width: max-content;
 }
 
 .headerActions {

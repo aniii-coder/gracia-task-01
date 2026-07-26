@@ -331,8 +331,8 @@ export const disbursementData = [
     bankExecutive: "Rohit Bansal",
   },
 ];
-
-
+// import React from "react";
+// import styles from "./CustomDataTable.module.css";
 
 const CustomDataTable = ({
   columns = [],
@@ -341,96 +341,78 @@ const CustomDataTable = ({
   leftHeader,
   centerHeader,
   rightHeader,
+  tableStyle,
 }) => {
+  const visibleColumns = columns?.filter((column) => column?.visible !== false) ?? [];
+
   return (
-    // <div className={`${styles.tableContainer} ${className}`}>
-     
-    // </div>
-    <div className={`${styles.tableContainer} ${className}`}>
+    <div className={`${styles?.tableContainer ?? ""} ${className}`}>
+      {rightHeader && <div className={styles?.fixedHeaderButton}>{rightHeader}</div>}
 
-  <div className={styles.fixedHeaderButton}>
-    {rightHeader}
-  </div>
-
-  <div className={styles.tableScroll}>
-    <table className={styles.table}>
-        {/* ---------- Header ---------- */}
-        <thead>
-         
-          <tr>
-            {columns
-              .filter((column) => column.visible !== false)
-              .map((column) => (
+      <div className={styles?.tableScroll}>
+        <table className={styles?.table} style={tableStyle}>
+          <thead>
+            <tr>
+              {visibleColumns.map((column) => (
                 <th
-                  key={column.key}
+                  key={column?.key}
                   style={{
-                    width: column.width,
-                    minWidth: column.minWidth,
-                    maxWidth: column.maxWidth,
-                    textAlign: column.align || "left",
+                    width: column?.width,
+                    minWidth: column?.minWidth,
+                    maxWidth: column?.maxWidth,
+                    textAlign: column?.align || "left",
                   }}
                 >
-                  {column.header ? (
-                    column.header({
-                      column,
-                      styles,
-                    })
-                  ) : (
-                    column.title
-                  )}
+                  {typeof column?.header === "function"
+                    ? column.header({ column, styles })
+                    : column?.header || column?.title}
                 </th>
               ))}
-          </tr>
-        </thead>
+            </tr>
+          </thead>
 
-        {/* ---------- Body ---------- */}
-        <tbody>
-          {data.length ? (
-            data.map((row, rowIndex) => (
-              <tr key={row.id ?? rowIndex}>
-                {columns
-                  .filter((column) => column.visible !== false)
-                  .map((column) => {
-                    const value = row[column.key];
+          <tbody>
+            {data?.length ? (
+              data.map((row, rowIndex) => (
+                <tr key={row?.id ?? rowIndex}>
+                  {visibleColumns.map((column) => {
+                    const value = column?.key ? row?.[column.key] : undefined;
 
                     return (
                       <td
-                        key={column.key}
+                        key={column?.key}
                         style={{
-                          textAlign: column.align || "left",
+                          textAlign: column?.align || "left",
                         }}
                       >
-                        {column.render ? (
-                          column.render({
-                            row,
-                            value,
-                            rowIndex,
-                            column,
-                            styles,
-                          })
-                        ) : (
-                          value
-                        )}
+                        {typeof column?.render === "function"
+                          ? column.render({
+                              row,
+                              value,
+                              rowIndex,
+                              column,
+                              styles,
+                            })
+                          : value}
                       </td>
                     );
                   })}
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td
+                  colSpan={visibleColumns.length || 1}
+                  className={styles?.emptyState}
+                >
+                  No Data Found
+                </td>
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td
-                colSpan={columns.length}
-                className={styles.emptyState}
-              >
-                No Data Found
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-  </div>
-
-</div>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 };
 
